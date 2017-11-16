@@ -1,5 +1,7 @@
 import pymysql.cursors
 
+# Exemplo de um conexão com banco de dados
+
 config = {'host': '192.168.1.20',
           'user': 'root',
           'password': '131970hc',
