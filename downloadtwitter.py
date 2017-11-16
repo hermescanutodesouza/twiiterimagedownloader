@@ -7,7 +7,7 @@ def salvaemhd(twittername):
 
     namescreen = twittername
 
-    file = open("log.txt","w")
+
 
     consumer_key = 'i9qNqtBfy4DN8C8qgklTIxWB5'
     consumer_secret = 'UFgfZTkPz26in1vhSUXad31484lSbfJY13qQyLRyoipYhy6avZ'
@@ -31,6 +31,7 @@ def salvaemhd(twittername):
             print(namescreen +": ->Carregando pagina do tweet", last_id )
 
     number = 0
+    file = open("log.txt", "w")   #criar o arquivo de log
     for tweet in timeline:
        for media in tweet.entities.get("media",[]):
           if media.get("type",None) == "photo":
@@ -38,9 +39,9 @@ def salvaemhd(twittername):
               file.write( media["media_url"] + '\n')
               print(namescreen +": ->imagem", number, " = ", media["media_url"])
 
-    file.close()
+    file.close() #salva o log de arquivos a serem baixados
 
     try:
-        subprocess.check_output("aria2c -ilog.txt -j10 --dir=images/"+slugify(namescreen), shell=True)
+        subprocess.check_output("aria2c -ilog.txt -j10 --dir=images/"+slugify(namescreen), shell=True) #faz download do arquivo
     except:
         print(namescreen +": ->Erro no download dos arquivos")
